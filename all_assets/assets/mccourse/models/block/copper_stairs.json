@@ -1,8 +1,0 @@
-{
-  "parent": "block/stairs",
-  "textures": {
-    "bottom": "mccourse:block/copper_block",
-    "top": "mccourse:block/copper_block",
-    "side": "mccourse:block/copper_block"
-  }
-}
