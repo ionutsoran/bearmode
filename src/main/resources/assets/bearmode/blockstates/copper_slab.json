@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "bearmode:block/copper_slab"
+    },
+    "type=double": {
+      "model": "bearmode:block/copper_block"
+    },
+    "type=top": {
+      "model": "bearmode:block/copper_slab_top"
+    }
+  }
+}

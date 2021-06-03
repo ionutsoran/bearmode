@@ -1,0 +1,27 @@
+{
+  "item.bearmode.copper_wire": "Copper Wire",
+  "item.bearmode.copper_ingot": "Copper Ingot",
+  "item.bearmode.coppered_apple": "Coppered Apple",
+
+  "item.bearmode.coppered_shovel": "Coppered Shovel",
+  "item.bearmode.coppered_pickaxe": "Coppered Pickaxe",
+  "item.bearmode.coppered_axe": "Coppered Axe",
+  "item.bearmode.coppered_hoe": "Coppered Hoe",
+
+  "item.bearmode.copper_helmet": "Copper Helmet",
+  "item.bearmode.copper_chestplate": "Copper Chestplate",
+  "item.bearmode.copper_leggings": "Copper Leggings",
+  "item.bearmode.copper_boots": "Copper Boots",
+
+  "block.bearmode.copper_stairs": "Copper Stairs",
+  "block.bearmode.copper_fence": "Copper Fence",
+  "block.bearmode.copper_fence_gate": "Copper Fence Gate",
+  "block.bearmode.copper_pressure_plate": "Copper Pressure Plate",
+  "block.bearmode.copper_button": "Copper Button",
+  "block.bearmode.copper_slab": "Copper Button",
+
+  "item.bearmode.coppered_sword": "Coppered Sword",
+  "block.bearmode.copper_block": "Copper Block",
+  "block.bearmode.copper_ore": "Copper Ore",
+  "itemGroup.courseTab": "Course Tab"
+}

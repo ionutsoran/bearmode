@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "xxx",
+    "xyx",
+    "xxx"
+  ],
+  "key":
+  {
+    "x":
+    {
+      "item": "bearmode:copper_wire"
+    },
+    "y":
+    {
+      "item": "bearmode:copper_block"
+    }
+  },
+  "result":
+  {
+    "item": "minecraft:diamond"
+  }
+}

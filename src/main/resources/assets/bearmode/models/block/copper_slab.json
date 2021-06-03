@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "bearmode:block/copper_block",
+    "top": "bearmode:block/copper_block",
+    "side": "bearmode:block/copper_block"
+  }
+}

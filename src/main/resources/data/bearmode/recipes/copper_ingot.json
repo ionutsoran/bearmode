@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "",
+  "ingredients":
+  [
+    {"item": "bearmode:copper_block"}
+  ],
+  "result":
+  {
+    "item": "bearmode:copper_ingot",
+    "count": 9
+  }
+
+}
