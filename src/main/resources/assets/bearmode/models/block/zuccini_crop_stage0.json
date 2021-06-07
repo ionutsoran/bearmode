@@ -1,0 +1,6 @@
+{
+  "parent": "block/crop",
+  "textures": {
+    "crop": "bearmode:block/zuccini_crop_stage0"
+  }
+}

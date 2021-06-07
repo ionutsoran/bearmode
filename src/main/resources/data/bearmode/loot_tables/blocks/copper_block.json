@@ -6,7 +6,34 @@
       "entries": [
         {
           "type":"minecraft:item",
-          "name": "bearmode:copper_block"
+          "conditions": [
+            {
+              "condition": "random_chance",
+              "chance": 0.5
+            }
+          ],
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2.0,
+                "max": 5.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "bearmode:copper_block",
+          "weight": 20
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type":"minecraft:item",
+          "name": "bearmode:copper_wire",
+          "weight": 80
         }
       ]
     }

@@ -1,20 +1,30 @@
 package com.isoran.bearmode.events;
 
+import com.isoran.bearmode.block.ModFluids;
 import com.isoran.bearmode.item.ModItems;
 import com.isoran.bearmode.util.Config;
+import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.block.Blocks;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.item.ExperienceBottleEntity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.passive.SheepEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Hand;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.world.BlockEvent;
@@ -86,6 +96,36 @@ public class ModEvents {
                     player.position().x,
                     player.position().y + 10,
                     player.position().z));
+        }
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    @SubscribeEvent
+    public void onRenderFog(EntityViewRenderEvent.FogDensity event) {
+        if (event.getInfo().getFluidInCamera().getFluidState() == ModFluids.OIL_FLUID.get().getSource(false)
+                || event.getInfo().getFluidInCamera().getFluidState() ==
+                ModFluids.OIL_FLUID.get().getFlowing(8,true))
+        {
+            RenderSystem.fogMode(GlStateManager.FogMode.EXP);
+            event.setDensity(1.5f);
+            event.setCanceled(true);
+        }
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    @SubscribeEvent
+    public void onRenderFogColor(EntityViewRenderEvent.FogColors event) {
+        if (event.getInfo().getFluidInCamera().getFluidState() == ModFluids.OIL_FLUID.get().getSource(false)
+                || event.getInfo().getFluidInCamera().getFluidState() ==
+                ModFluids.OIL_FLUID.get().getFlowing(8,true))
+        {
+            event.setRed(0.0f);
+            event.setGreen(0.0f);
+            event.setBlue(0.0f);
+//            String msg = TextFormatting.GREEN + " 1 " + event.getInfo().getFluidInCamera().getFluidState();
+//            Minecraft.getInstance().player.sendMessage(new StringTextComponent(msg), Minecraft.getInstance().player.getUUID());
+//            String msg1 = TextFormatting.YELLOW + " 2 " + ModFluids.OIL_FLUID.get().getFlowing(8,true);
+//            Minecraft.getInstance().player.sendMessage(new StringTextComponent(msg1), Minecraft.getInstance().player.getUUID());
         }
     }
 }

@@ -1,11 +1,12 @@
 package com.isoran.bearmode.item;
 
 import com.isoran.bearmode.Bearmode;
+import com.isoran.bearmode.block.ModBlocks;
+import com.isoran.bearmode.block.ModFluids;
 import com.isoran.bearmode.util.Registration;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.potion.Effects;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraftforge.common.ToolType;
@@ -24,6 +25,16 @@ public class ModItems {
     public static final RegistryObject<Item> COPPERED_APPLE =
             Registration.ITEMS.register("coppered_apple",
                     () -> new CopperedApple());
+
+    public static final RegistryObject<Item> ZUCCINI_SEED =
+            Registration.ITEMS.register("zuccini_seed",
+                    () -> new BlockItem(ModBlocks.ZUCCINI_CROP.get(),
+                            new Item.Properties().tab(Bearmode.COURSE_TAB)));
+    @Deprecated
+    public static final RegistryObject<Item> OIL_BUCKET =
+            Registration.ITEMS.register("oil_bucket",
+                    () -> new BucketItem(ModFluids.OIL_FLUID::get,
+                            new Item.Properties().tab(Bearmode.COURSE_TAB).stacksTo(1)));
 
     /* TOOLS */
     public static final RegistryObject<Item> COPPER_SHOVEL =

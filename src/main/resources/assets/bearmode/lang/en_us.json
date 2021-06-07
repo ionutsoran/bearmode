@@ -23,5 +23,8 @@
   "item.bearmode.coppered_sword": "Coppered Sword",
   "block.bearmode.copper_block": "Copper Block",
   "block.bearmode.copper_ore": "Copper Ore",
-  "itemGroup.courseTab": "Course Tab"
+  "itemGroup.courseTab": "Course Tab",
+
+  "block.bearmode.zuccini_crop": "Zuccini Seed"
+
 }

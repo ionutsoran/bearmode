@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "bearmode:oil_flowing",
+    "bearmode:oil_fluid"
+  ]
+}

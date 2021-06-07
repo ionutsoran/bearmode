@@ -6,13 +6,10 @@ import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
-
-
-import java.awt.*;
 import java.util.function.Supplier;
+
 
 public class ModBlocks {
 
@@ -49,6 +46,10 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> COPPER_BUTTON =
             register("copper_button", () -> new StoneButtonBlock(AbstractBlock.Properties.of(Material.METAL)));
+
+    public static final RegistryObject<Block> ZUCCINI_CROP =
+            Registration.BLOCKS.register("zuccini_crop",
+                    () -> new ZucciniCrop(AbstractBlock.Properties.copy(Blocks.WHEAT)));
 
     public static void register() {}
 

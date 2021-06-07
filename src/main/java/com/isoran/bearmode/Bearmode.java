@@ -1,12 +1,16 @@
 package com.isoran.bearmode;
 
 import com.isoran.bearmode.block.ModBlocks;
+import com.isoran.bearmode.block.ModFluids;
 import com.isoran.bearmode.events.ModEvents;
 import com.isoran.bearmode.item.ModItems;
 import com.isoran.bearmode.util.Config;
 import com.isoran.bearmode.util.Registration;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.client.renderer.RenderState;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
@@ -51,6 +55,7 @@ public class Bearmode
         Registration.register();
         ModItems.register();
         ModBlocks.register();
+        ModFluids.register();
 
         MinecraftForge.EVENT_BUS.register(new ModEvents());
         // Register the setup method for modloading
@@ -79,6 +84,10 @@ public class Bearmode
     private void doClientStuff(final FMLClientSetupEvent event) {
         // do something that can only be done on the client
         LOGGER.info("Got game settings {}", event.getMinecraftSupplier().get().options);
+        RenderTypeLookup.setRenderLayer(ModBlocks.ZUCCINI_CROP.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(ModFluids.OIL_FLUID.get(), RenderType.translucent());
+        RenderTypeLookup.setRenderLayer(ModFluids.OIL_FLOWING.get(), RenderType.translucent());
+        RenderTypeLookup.setRenderLayer(ModFluids.OIL_BLOCK.get(), RenderType.translucent());
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event)
