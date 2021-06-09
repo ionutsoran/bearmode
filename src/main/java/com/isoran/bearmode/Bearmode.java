@@ -4,11 +4,12 @@ import com.isoran.bearmode.block.ModBlocks;
 import com.isoran.bearmode.block.ModFluids;
 import com.isoran.bearmode.events.ModEvents;
 import com.isoran.bearmode.item.ModItems;
+import com.isoran.bearmode.setup.ClientProxy;
+import com.isoran.bearmode.setup.IProxy;
+import com.isoran.bearmode.setup.ServerProxy;
 import com.isoran.bearmode.util.Config;
 import com.isoran.bearmode.util.Registration;
 import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.client.renderer.RenderState;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.item.ItemGroup;
@@ -16,6 +17,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -37,7 +39,7 @@ import java.util.stream.Collectors;
 public class Bearmode
 {
     public static final String MOD_ID = "bearmode";
-    // Directly reference a log4j logger.
+
     private static final Logger LOGGER = LogManager.getLogger();
 
     public static final ItemGroup COURSE_TAB = new ItemGroup("courseTab") {
@@ -47,47 +49,58 @@ public class Bearmode
         }
     };
 
-    public Bearmode() {
+    public static IProxy proxy;
 
-        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, Config.CLIENT_CONFIG);
-        ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, Config.SERVER_CONFIG);
+    public Bearmode()
+    {
+        proxy = DistExecutor.safeRunForDist(() -> ClientProxy::new, () -> ServerProxy::new);
 
-        Registration.register();
-        ModItems.register();
-        ModBlocks.register();
-        ModFluids.register();
-
-        MinecraftForge.EVENT_BUS.register(new ModEvents());
-        // Register the setup method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
-        // Register the enqueueIMC method for modloading
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);
-        // Register the processIMC method for modloading
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
-        // Register the doClientStuff method for modloading
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
 
-        Config.loadConfigFile(Config.CLIENT_CONFIG, FMLPaths.CONFIGDIR.get().resolve("bearmode-client.toml").toString());
-        Config.loadConfigFile(Config.SERVER_CONFIG, FMLPaths.CONFIGDIR.get().resolve("bearmode-server.toml").toString());
+        registerModAdditions();
 
-        // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
     }
 
     private void setup(final FMLCommonSetupEvent event)
     {
-        // some preinit code
-        LOGGER.info("HELLO FROM PREINIT");
-        LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
+      registerConfigs();
+
+      proxy.init();
+
+      loadConfigs();
+    }
+
+    private void registerConfigs()
+    {
+        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, Config.CLIENT_CONFIG);
+        ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, Config.SERVER_CONFIG);
+    }
+
+    private void loadConfigs()
+    {
+        Config.loadConfigFile(Config.CLIENT_CONFIG, FMLPaths.CONFIGDIR.get().resolve("bearmode-client.toml").toString());
+        Config.loadConfigFile(Config.SERVER_CONFIG, FMLPaths.CONFIGDIR.get().resolve("bearmode-server.toml").toString());
+
+    }
+
+    private void registerModAdditions()
+    {
+        //Inits the registration of our additions
+        Registration.init();
+
+        //register items block etc added by our mod
+        ModItems.register();
+        ModBlocks.register();
+        ModFluids.register();
+
+        //register mod events
+        MinecraftForge.EVENT_BUS.register(new ModEvents());
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {
         // do something that can only be done on the client
         LOGGER.info("Got game settings {}", event.getMinecraftSupplier().get().options);
-        RenderTypeLookup.setRenderLayer(ModBlocks.ZUCCINI_CROP.get(), RenderType.cutout());
-        RenderTypeLookup.setRenderLayer(ModFluids.OIL_FLUID.get(), RenderType.translucent());
-        RenderTypeLookup.setRenderLayer(ModFluids.OIL_FLOWING.get(), RenderType.translucent());
-        RenderTypeLookup.setRenderLayer(ModFluids.OIL_BLOCK.get(), RenderType.translucent());
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event)
