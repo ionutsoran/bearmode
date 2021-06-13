@@ -4,12 +4,18 @@ import com.isoran.bearmode.block.ModBlocks;
 import com.isoran.bearmode.block.ModFluids;
 import com.isoran.bearmode.events.ModEvents;
 import com.isoran.bearmode.item.ModItems;
+import com.isoran.bearmode.particles.BearParticle;
+import com.isoran.bearmode.particles.ModParticles;
 import com.isoran.bearmode.setup.ClientProxy;
 import com.isoran.bearmode.setup.IProxy;
 import com.isoran.bearmode.setup.ServerProxy;
 import com.isoran.bearmode.util.Config;
 import com.isoran.bearmode.util.Registration;
 import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.particle.AshParticle;
+import net.minecraft.client.particle.BreakingParticle;
+import net.minecraft.client.particle.Particle;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.item.ItemGroup;
@@ -90,12 +96,17 @@ public class Bearmode
         Registration.init();
 
         //register items block etc added by our mod
+        //Minecraft.getInstance().particles.registerFactory(DeferredRegistration.POWER_CRYSTAL_PARTICLE.get(), new SHParticle.Factory(Color.ROYALBLUE));
         ModItems.register();
         ModBlocks.register();
+        ModParticles.register();
         ModFluids.register();
+
 
         //register mod events
         MinecraftForge.EVENT_BUS.register(new ModEvents());
+
+
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {

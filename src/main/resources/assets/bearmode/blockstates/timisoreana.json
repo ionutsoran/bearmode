@@ -1,0 +1,8 @@
+{
+  "variants":{
+    "facing=north": {"model": "bearmode:block/timisoreana"},
+    "facing=south": {"model": "bearmode:block/timisoreana", "y": 180},
+    "facing=west": {"model": "bearmode:block/timisoreana",  "y": 270},
+    "facing=east": {"model": "bearmode:block/timisoreana",  "y": 90}
+  }
+}

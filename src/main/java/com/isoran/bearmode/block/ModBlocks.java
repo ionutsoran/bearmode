@@ -51,6 +51,13 @@ public class ModBlocks {
             Registration.BLOCKS.register("zuccini_crop",
                     () -> new ZucciniCrop(AbstractBlock.Properties.copy(Blocks.WHEAT)));
 
+    public static final RegistryObject<Block> TIMISOREANA =
+            register("timisoreana", () -> new Timisoreana(
+                    AbstractBlock.Properties
+                    .of(Material.METAL)
+                    .strength(4f)
+                    .harvestTool(ToolType.PICKAXE)));
+
     public static void register() {}
 
     private static <T extends Block>RegistryObject<T> register(String name, Supplier<T> block){

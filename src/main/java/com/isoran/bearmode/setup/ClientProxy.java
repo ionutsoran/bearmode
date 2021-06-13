@@ -3,6 +3,8 @@ package com.isoran.bearmode.setup;
 import com.isoran.bearmode.Bearmode;
 import com.isoran.bearmode.block.ModBlocks;
 import com.isoran.bearmode.block.ModFluids;
+import com.isoran.bearmode.particles.BearParticle;
+import com.isoran.bearmode.particles.ModParticles;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
@@ -18,6 +20,7 @@ public class ClientProxy implements IProxy{
         RenderTypeLookup.setRenderLayer(ModFluids.OIL_FLUID.get(), RenderType.translucent());
         RenderTypeLookup.setRenderLayer(ModFluids.OIL_FLOWING.get(), RenderType.translucent());
         RenderTypeLookup.setRenderLayer(ModFluids.OIL_BLOCK.get(), RenderType.translucent());
+        Minecraft.getInstance().particleEngine.register(ModParticles.TIMISOREANA_PARTICLE.get(),new BearParticle.Factory()); //.Factory(Color.FIREBRICK));
     }
 
     @Override
