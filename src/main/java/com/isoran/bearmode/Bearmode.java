@@ -2,6 +2,7 @@ package com.isoran.bearmode;
 
 import com.isoran.bearmode.block.ModBlocks;
 import com.isoran.bearmode.block.ModFluids;
+import com.isoran.bearmode.container.ModContainers;
 import com.isoran.bearmode.events.ModEvents;
 import com.isoran.bearmode.item.ModItems;
 import com.isoran.bearmode.particles.BearParticle;
@@ -9,6 +10,7 @@ import com.isoran.bearmode.particles.ModParticles;
 import com.isoran.bearmode.setup.ClientProxy;
 import com.isoran.bearmode.setup.IProxy;
 import com.isoran.bearmode.setup.ServerProxy;
+import com.isoran.bearmode.tileentity.ModTileEntities;
 import com.isoran.bearmode.util.Config;
 import com.isoran.bearmode.util.Registration;
 import net.minecraft.block.Block;
@@ -101,7 +103,8 @@ public class Bearmode
         ModBlocks.register();
         ModParticles.register();
         ModFluids.register();
-
+        ModTileEntities.register();
+        ModContainers.register();
 
         //register mod events
         MinecraftForge.EVENT_BUS.register(new ModEvents());

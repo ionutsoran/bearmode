@@ -58,6 +58,11 @@ public class ModBlocks {
                     .strength(4f)
                     .harvestTool(ToolType.PICKAXE)));
 
+    public static final RegistryObject<Block> PIPE =
+            register("pipe", () -> new Pipe(
+                    2.0F, 2.0F, 16.0F, 16.0F, 24.0F,
+                    AbstractBlock.Properties.of(Material.GLASS).strength(4f)));
+
     public static void register() {}
 
     private static <T extends Block>RegistryObject<T> register(String name, Supplier<T> block){
