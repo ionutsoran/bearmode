@@ -63,6 +63,25 @@ public class ModBlocks {
                     2.0F, 2.0F, 16.0F, 16.0F, 24.0F,
                     AbstractBlock.Properties.of(Material.GLASS).strength(4f)));
 
+    public static final RegistryObject<Block> REDWOOD_PLANK =
+            register("redwood_planks", () -> new Block(
+                    AbstractBlock.Properties.of(Material.WOOD)));
+
+    public static final RegistryObject<Block> REDWOOD_LOG =
+            register("redwood_log", () -> new RotatedPillarBlock(
+                    AbstractBlock.Properties.of(Material.WOOD)));
+
+    public static final RegistryObject<Block> REDWOOD_LEAVES =
+            register("redwood_leaves", () -> new LeavesBlock(
+                    AbstractBlock.Properties.of(Material.LEAVES).noOcclusion()));
+
+    public static final RegistryObject<Block> REDWOOD_SAPLING =
+            register("redwood_sapling", () -> new RedwoodSapling(
+                    () -> new RedwoodTree(), AbstractBlock.Properties.of(Material.BAMBOO_SAPLING).noOcclusion()
+            ));
+
+
+
     public static void register() {}
 
     private static <T extends Block>RegistryObject<T> register(String name, Supplier<T> block){

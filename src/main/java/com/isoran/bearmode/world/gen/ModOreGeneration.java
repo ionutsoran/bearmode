@@ -58,10 +58,11 @@ public class ModOreGeneration
         }
     }
 
-    private static void addFeatureToBiome(Biome biome, GenerationStage.Decoration decoration,
+    public static void addFeatureToBiome(Biome biome, GenerationStage.Decoration decoration,
                                           ConfiguredFeature<?,?> configuredFeature)
     {
-        List<List<Supplier<ConfiguredFeature<?,?>>>> biomeFeatures = new ArrayList<>();
+        List<List<Supplier<ConfiguredFeature<?,?>>>> biomeFeatures =
+                new ArrayList<>( biome.getGenerationSettings().features());
 
         while (biomeFeatures.size() <= decoration.ordinal())
         {
@@ -76,6 +77,6 @@ public class ModOreGeneration
                 BiomeGenerationSettings.class,
                 biome.getGenerationSettings(),
                 biomeFeatures,
-                "field_242484_f");
+                "features");
     }
 }

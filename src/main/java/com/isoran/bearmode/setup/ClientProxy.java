@@ -26,6 +26,8 @@ public class ClientProxy implements IProxy{
         Minecraft.getInstance().particleEngine.register(ModParticles.TIMISOREANA_PARTICLE.get(),new BearParticle.Factory()); //.Factory(Color.FIREBRICK));
         RenderTypeLookup.setRenderLayer(ModBlocks.PIPE.get(), RenderType.translucent());
         ScreenManager.register(ModContainers.PIPE_CONTAINER.get(), PipeScreen::new);
+        RenderTypeLookup.setRenderLayer(ModBlocks.REDWOOD_SAPLING.get(), RenderType.translucent());
+//        RenderTypeLookup.setRenderLayer(ModBlocks.REDWOOD_LEAVES.get(), RenderType.translucentNoCrumbling() );
     }
 
     @Override
