@@ -3,6 +3,9 @@ package com.isoran.bearmode;
 import com.isoran.bearmode.block.ModBlocks;
 import com.isoran.bearmode.block.ModFluids;
 import com.isoran.bearmode.container.ModContainers;
+import com.isoran.bearmode.entity.BuffaloEntity;
+import com.isoran.bearmode.entity.JuicedVillagerEntity;
+import com.isoran.bearmode.entity.ModEntityTypes;
 import com.isoran.bearmode.events.ModEvents;
 import com.isoran.bearmode.item.ModItems;
 import com.isoran.bearmode.particles.BearParticle;
@@ -20,20 +23,20 @@ import net.minecraft.client.particle.BreakingParticle;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
+import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
-import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
+import net.minecraftforge.fml.event.lifecycle.*;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLPaths;
@@ -76,6 +79,14 @@ public class Bearmode
 
       proxy.init();
 
+
+        DeferredWorkQueue.runLater(() -> {
+            GlobalEntityTypeAttributes.put(ModEntityTypes.BUFFALO.get(),
+                    BuffaloEntity.setCustomAttributes().build());
+            GlobalEntityTypeAttributes.put(ModEntityTypes.JUICED_VILLAGER.get(),
+                    JuicedVillagerEntity.setCustomAttributes().build());
+        });
+
       loadConfigs();
     }
 
@@ -105,6 +116,7 @@ public class Bearmode
         ModFluids.register();
         ModTileEntities.register();
         ModContainers.register();
+        ModEntityTypes.register();
 
         //register mod events
         MinecraftForge.EVENT_BUS.register(new ModEvents());

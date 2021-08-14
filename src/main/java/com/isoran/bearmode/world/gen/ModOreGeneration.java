@@ -62,7 +62,7 @@ public class ModOreGeneration
                                           ConfiguredFeature<?,?> configuredFeature)
     {
         List<List<Supplier<ConfiguredFeature<?,?>>>> biomeFeatures =
-                new ArrayList<>( biome.getGenerationSettings().features());
+                new ArrayList<>(biome.getGenerationSettings().features());
 
         while (biomeFeatures.size() <= decoration.ordinal())
         {

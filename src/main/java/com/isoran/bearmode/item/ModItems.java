@@ -3,6 +3,7 @@ package com.isoran.bearmode.item;
 import com.isoran.bearmode.Bearmode;
 import com.isoran.bearmode.block.ModBlocks;
 import com.isoran.bearmode.block.ModFluids;
+import com.isoran.bearmode.entity.ModEntityTypes;
 import com.isoran.bearmode.util.Registration;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
@@ -35,6 +36,22 @@ public class ModItems {
             Registration.ITEMS.register("oil_bucket",
                     () -> new BucketItem(ModFluids.OIL_FLUID::get,
                             new Item.Properties().tab(Bearmode.COURSE_TAB).stacksTo(1)));
+
+    public static final RegistryObject<Item> JUICED_VILLAGER_EGG =
+            Registration.ITEMS.register("juiced_villager_egg",
+                    () -> new ModSpawnEggItem(
+                            ModEntityTypes.JUICED_VILLAGER,
+                            1,
+                            0xff115544,
+                            new Item.Properties().tab(Bearmode.COURSE_TAB)));
+
+    public static final RegistryObject<Item> BUFFALO_EGG =
+            Registration.ITEMS.register("buffalo_egg",
+                    () -> new ModSpawnEggItem(
+                            ModEntityTypes.BUFFALO,
+                            0xff241344,
+                            0xff123455,
+                            new Item.Properties().tab(Bearmode.COURSE_TAB)));
 
     /* TOOLS */
     public static final RegistryObject<Item> COPPER_SHOVEL =

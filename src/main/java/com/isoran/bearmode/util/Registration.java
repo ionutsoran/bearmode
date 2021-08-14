@@ -2,6 +2,7 @@ package com.isoran.bearmode.util;
 
 import com.isoran.bearmode.Bearmode;
 import net.minecraft.block.Block;
+import net.minecraft.entity.EntityType;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.Item;
@@ -33,13 +34,17 @@ public class Registration {
     public static final DeferredRegister<ContainerType<?>> CONTAINERS
             = DeferredRegister.create(ForgeRegistries.CONTAINERS, Bearmode.MOD_ID);
 
+    public static final DeferredRegister<EntityType<?>> ENTITIES
+            = DeferredRegister.create(ForgeRegistries.ENTITIES, Bearmode.MOD_ID);
+
     public static void init(){
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
         BLOCKS.register(eventBus);
         ITEMS.register(eventBus);
         FLUIDS.register(eventBus);
-        TILE_ENTITY_TYPE.register(eventBus);
         PARTICLE_TYPES.register(eventBus);
         CONTAINERS.register(eventBus);
+        TILE_ENTITY_TYPE.register(eventBus);
+        ENTITIES.register(eventBus);
     }
 }
